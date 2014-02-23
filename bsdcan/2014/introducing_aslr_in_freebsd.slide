@@ -1,0 +1,27 @@
+Implementing ASLR in FreeBSD
+BSDCan
+17 May 2014
+Tags: FreeBSD, ASLR, Security, grsec, pax
+
+Shawn "lattera" Webb
+SoldierX
+lattera@gmail.com
+https://www.soldierx.com/
+@lattera
+
+* About the Author
+- Fan of opensource
+- FreeBSD and ZFS fanboy
+- Passionate about security
+- Submitted patches to FreeBSD
+- Maintainer of a few FreeBSD ports
+
+Disclaimer: ideas, thoughts, etc are mine, not my employer's
+
+* Agenda
+- History of ASLR (according thusly to ye olde Wikipedia)
+- FreeBSD's security strengths
+- FreeBSD's security weaknesses
+- How ASLR is implemented
+- Future research/work
+- Live demo
