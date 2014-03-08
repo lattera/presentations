@@ -16,12 +16,28 @@ https://www.soldierx.com/
 - Submitted patches to FreeBSD
 - Maintainer of a few FreeBSD ports
 
-Disclaimer: ideas, thoughts, etc are mine, not my employer's
+Disclaimer: opinions, ideas, thoughts, etc are mine, not my employer's
 
 * Agenda
 - History of ASLR (according thusly to ye olde Wikipedia)
 - FreeBSD's security strengths
 - FreeBSD's security weaknesses
+- Learning from others
 - How ASLR is implemented
 - Future research/work
 - Live demo
+
+* History of ASLR
+- October 2002: One or more talented persons, known as the PaX team, created a patch to the Linux kernel implementing ASLR.
+- 2004: OpenBSD starts work on implementing ASLR. Gets everything except for execbase randomization (Position Independent Executables).
+- June 2005: Linux rips PaX's ASLR, dumbing it down and calling it secure.
+- 2007: Windows Vista introduces ASLR. Major problems with their implementation, even today.
+- 2008: OpenBSD completes ASLR implementation with PIE support.
+- Solaris 11 introduced ASLR in Solaris
+- Thank you Wikipedia University!
+
+* FreeBSD's Security Strengths
+- Mostly based on policies
+- MAC framework
+- NFSv4 and Posix ACLs
+- Securelevel
