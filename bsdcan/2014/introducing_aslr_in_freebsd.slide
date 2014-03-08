@@ -15,10 +15,14 @@ https://www.soldierx.com/
 - Passionate about security
 - Submitted patches to FreeBSD
 - Maintainer of a few FreeBSD ports
+- Author of libhijck: runtime process infection made easy on Linux and FreeBSD
 
 Disclaimer: opinions, ideas, thoughts, etc are mine, not my employer's
 
+.image new_sx_logo_v2.png 150 150
+
 * Agenda
+- Definitions
 - History of ASLR (according thusly to ye olde Wikipedia)
 - FreeBSD's security strengths
 - FreeBSD's security weaknesses
@@ -27,17 +31,43 @@ Disclaimer: opinions, ideas, thoughts, etc are mine, not my employer's
 - Future research/work
 - Live demo
 
+* Definitions
+- Security: What Sony's not good at. Ever-increasing layers of an onion that make everyone tear up.
+- Exploit mitigation: a way to prevent the exploitation of security vulnerabilities.
+- ASLR - Address Space Layout Randomization: An exploit mitigation technique by which the memory mappings of a given process are placed in random locations.
+
 * History of ASLR
 - October 2002: One or more talented persons, known as the PaX team, created a patch to the Linux kernel implementing ASLR.
 - 2004: OpenBSD starts work on implementing ASLR. Gets everything except for execbase randomization (Position Independent Executables).
 - June 2005: Linux rips PaX's ASLR, dumbing it down and calling it secure.
 - 2007: Windows Vista introduces ASLR. Major problems with their implementation, even today.
 - 2008: OpenBSD completes ASLR implementation with PIE support.
-- Solaris 11 introduced ASLR in Solaris
-- Thank you Wikipedia University!
+- 2011: ASLR introduced in Solaris 11
+
+Thank you Wikipedia University!
 
 * FreeBSD's Security Strengths
-- Mostly based on policies
+
+Mostly based on policies:
+
 - MAC framework
 - NFSv4 and Posix ACLs
 - Securelevel
+- auditdistd
+- Jails (and soon/now: bhyve)
+
+Non-policy technologies:
+
+- Non-exec stack
+- ptrace restriction
+
+* FreeBSD's Security Weaknesses
+
+- Only one exploit mitigation technology: non-exec stack
+- No PIE support in base
+- No ASLR
+- The many features of grsec
+
+* Learning From Others - Linux
+- Hooray politics!
+- Only one knob: turn ASLR on and off
