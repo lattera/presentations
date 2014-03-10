@@ -28,16 +28,27 @@ Disclaimer: opinions, ideas, thoughts, etc are mine, not my employer's
 - FreeBSD's security weaknesses
 - Learning from others
 - How ASLR is implemented
-- Future research/work
+- How to use ASLR on FreeBSD
+- Further research/work
 - Live demo
 
 * Definitions
-- Security: What Sony's not good at. Ever-increasing layers of an onion that make everyone tear up.
-- Exploit mitigation: a way to prevent the exploitation of security vulnerabilities.
+- Security: What Sony and Mt Gox have in common: they suck at it. Ever-increasing layers of an onion that make everyone tear up.
+- Exploit mitigation: a method or technique to prevent the sucessful exploitation of security vulnerabilities.
 - ASLR - Address Space Layout Randomization: An exploit mitigation technique by which the memory mappings of a given process are placed in random locations.
 
+What ASLR helps protect against:
+- Buffer overflows
+- ret2libc attacks
+- Essentially, low-level security vulnerabilities
+
+What ASLR doesn't help protect against:
+- SQL injection
+- System configuration oopsies
+- Essentially, higher-level security vulnerabilities
+
 * History of ASLR
-- October 2002: One or more talented persons, known as the PaX team, created a patch to the Linux kernel implementing ASLR.
+- July 2001: One or more talented persons, known as the PaX team, created a patch to the Linux kernel implementing ASLR.
 - 2004: OpenBSD starts work on implementing ASLR. Gets everything except for execbase randomization (Position Independent Executables).
 - June 2005: Linux rips PaX's ASLR, dumbing it down and calling it secure.
 - 2007: Windows Vista introduces ASLR. Major problems with their implementation, even today.
