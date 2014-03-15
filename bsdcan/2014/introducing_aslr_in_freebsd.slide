@@ -104,3 +104,23 @@ Windows:
   security.pax.aslr.compat.exec_len: 6
 - What about applications that don't support ASLR? (exhibit crashes, proprietary/can't compile, etc.)
 - Knobs can be set per-jail. Set up a jail with ASLR turned off in just that jail. Jail the misbehaving application.
+
+* References
+
+General ASLR:
+
+.link http://pax.grsecurity.net/
+.link https://en.wikipedia.org/wiki/Address_space_layout_randomization
+
+OSX:
+
+.link http://blog.azimuthsecurity.com/2014/03/attacking-ios-7-earlyrandom-prng.html
+
+Windows:
+
+.link http://cansecwest.com/slides/2013/DEP-ASLR%20bypass%20without%20ROP-JIT.pdf
+.link http://labs.bromium.com/2014/02/24/bypassing-emet-4-1/
+
+Linux:
+
+.link http://danigargu.blogspot.com/2013/01/having-fun-with-rop-nxaslr-bypass-linux_18.html
