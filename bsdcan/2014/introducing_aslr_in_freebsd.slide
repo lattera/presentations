@@ -84,7 +84,7 @@ Linux:
 - Hooray politics!
 - If you rip off PaX and grsec, make your rip off less secure, claim it to be more secure, you're gonna have a bad time.
 - Only one knob: turn ASLR on and off for the whole system
-- Weak. Linux's ASLR has many weaknesses.
+- Weak. Linux's ASLR has weaknesses.
 
 Windows:
 - Overall a pretty decent technical implementation
@@ -104,6 +104,30 @@ Windows:
   security.pax.aslr.compat.exec_len: 6
 - What about applications that don't support ASLR? (exhibit crashes, proprietary/can't compile, etc.)
 - Knobs can be set per-jail. Set up a jail with ASLR turned off in just that jail. Jail the misbehaving application.
+
+* How ASLR is Implemented - Low-Level Details
+
+`sys/kern/kern_pax.c` - Brains of the operation
+- Initializes the jail with defaults
+- Where the sysctl's are implemented
+- Where most of the logic for randomizing mmap calls and stack is done
+
+`sys/kern/imgact_elf.c` - RTLD randomizations
+- Normally, the RTLD is loaded at the same spot each time it's loaded, then it reloads itself in a random spot
+- So, immediately randomize the RTLD
+- The randomizations here will also help in implementing Position-Independent Executables (PIEs)
+
+* How to use ASLR on FreeBSD
+- Compile kernel with PAX_ASLR option
+- `sysctl security.pax.aslr.status=[n]` - Enable/disable ASLR, n > 1 is enabled, n == 0 is disabled
+- Enabled by default
+- Child jails will inherit parent jail's settings
+- Even the host is a jail (JID 0, invisible to the user)
+
+* Future Work
+- Position-Independent Executable (PIE) support (took OpenBSD four years to do this... let's beat them!)
+- Testing. Testing. And more testing!
+- Porting of more grsec/PaX features
 
 * References
 
