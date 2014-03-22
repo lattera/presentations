@@ -83,7 +83,7 @@ Non-policy technologies:
 Linux:
 - Hooray politics!
 - If you rip off PaX and grsec, make your rip off less secure, claim it to be more secure, you're gonna have a bad time.
-- Only one knob: turn ASLR on and off for the whole system
+- Only one knob: turn ASLR on and off for the whole system (half-truth, you can turn ASLR off on a per-run basis: setarch $(uname -m) -R ./yourProgram)
 - Weak. Linux's ASLR has weaknesses.
 
 Windows:
@@ -115,7 +115,12 @@ Windows:
 `sys/kern/imgact_elf.c` - RTLD randomizations
 - Normally, the RTLD is loaded at the same spot each time it's loaded, then it reloads itself in a random spot
 - So, immediately randomize the RTLD
-- The randomizations here will also help in implementing Position-Independent Executables (PIEs)
+- PIE support
+
+Position-Independent Executables:
+- Guaranteed to be loaded at a non-NULL address
+- WITH_PIE knob default to on, each application must also define CAN_PIE if said app can be compiled with -fPIE -pie (some apps can't be)
+- Some apps in base have CAN_PIE defined. Need more. Major project: ports
 
 * How to use ASLR on FreeBSD
 - Compile kernel with PAX_ASLR option
@@ -123,9 +128,10 @@ Windows:
 - Enabled by default
 - Child jails will inherit parent jail's settings
 - Even the host is a jail (JID 0, invisible to the user)
+- Compile applications with -fPIE -pie (note: how many ports entries do we have?)
 
 * Future Work
-- Position-Independent Executable (PIE) support (took OpenBSD four years to do this... let's beat them!)
+- Support PIE with high-visibility applications (network daemons, first)
 - Testing. Testing. And more testing!
 - Porting of more grsec/PaX features
 
