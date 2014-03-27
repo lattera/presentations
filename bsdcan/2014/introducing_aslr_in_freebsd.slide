@@ -132,6 +132,8 @@ Position-Independent Executables:
 
 * Future Work
 - Support PIE with high-visibility applications (network daemons, first)
+- Add support for ports
+- Support SPARC
 - Testing. Testing. And more testing!
 - Porting of more grsec/PaX features
 
@@ -139,18 +141,25 @@ Position-Independent Executables:
 
 General ASLR:
 
-.link http://pax.grsecurity.net/
-.link https://en.wikipedia.org/wiki/Address_space_layout_randomization
+[[http://pax.grsecurity.net/][The PaX Team]]
+[[https://en.wikipedia.org/wiki/Address_space_layout_randomization][Wikipedia - Address Space Layout Randomization]]
 
 OSX:
 
-.link http://blog.azimuthsecurity.com/2014/03/attacking-ios-7-earlyrandom-prng.html
+[[http://blog.azimuthsecurity.com/2014/03/attacking-ios-7-earlyrandom-prng.html][Attacking the iOS 7 early_random() PRNG]]
 
 Windows:
 
-.link http://cansecwest.com/slides/2013/DEP-ASLR%20bypass%20without%20ROP-JIT.pdf
-.link http://labs.bromium.com/2014/02/24/bypassing-emet-4-1/
+[[http://cansecwest.com/slides/2013/DEP-ASLR%20bypass%20without%20ROP-JIT.pdf][DEP/ASLR bypass without ROP/JIT]]
+[[http://labs.bromium.com/2014/02/24/bypassing-emet-4-1/][Bypassing EMET 4.1]]
+[[http://blogs.technet.com/b/srd/archive/2010/12/08/on-the-effectiveness-of-dep-and-aslr.aspx][On the Effectiveness of DEP and ASLR]]
+
+* References (cont'd)
 
 Linux:
 
-.link http://danigargu.blogspot.com/2013/01/having-fun-with-rop-nxaslr-bypass-linux_18.html
+[[http://danigargu.blogspot.com/2013/01/having-fun-with-rop-nxaslr-bypass-linux_18.html][Having fun with ROP - NX/ASLR Bypass]]
+
+[[http://nebelwelt.net/publications/12TRpie/gccPIE-TR120614.pdf][Whitepaper - Too Much PIE is bad for Performance]]
+
+[[https://www.cert.org/blogs/certcc/post.cfm?EntryID=191][Differences Between ASLR on Windows and Linux]]
