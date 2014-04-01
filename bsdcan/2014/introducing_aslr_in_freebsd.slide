@@ -52,8 +52,10 @@ What ASLR doesn't help protect against:
 - 2004: OpenBSD starts work on implementing ASLR. Gets everything except for execbase randomization (Position Independent Executables).
 - June 2005: Linux rips PaX's ASLR, dumbing it down and calling it secure.
 - 2007: Windows Vista introduces ASLR. Major problems with their implementation, even today.
+- 2007: Apple starts working on ASLR for OSX
 - 2008: OpenBSD completes ASLR implementation with PIE support.
 - 2011: ASLR introduced in Solaris 11
+- 2012: Apple finishes ASLR for OSX
 
 Thank you Wikipedia University!
 
@@ -134,6 +136,8 @@ Position-Independent Executables:
 - Support PIE with high-visibility applications (network daemons, first)
 - Add support for ports
 - Support SPARC
+- Support ARM
+- Won't add support for x86 (i386) -- not enough bits can be randomized
 - Testing. Testing. And more testing!
 - Porting of more grsec/PaX features
 
