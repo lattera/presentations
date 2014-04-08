@@ -92,6 +92,19 @@ Windows:
 - Overall a pretty decent technical implementation
 - BIIIIIG problem: individual EXEs and DLLs can have ASLR turned on or off
 
+* Introducing ASLR in FreeBSD
+
+Available on all architectures
+
+ARMv6 (Raspberry Pi Model B) has issues
+
+Features:
+- Execution base randomzation for position-independent executables
+- Per-jail ASLR settings
+- Fine-grained control of individual applications via brandelf (was: paxctl)
+- Segmentation fault protection
+- NX stack on architectures where NX stack wasn't being obeyed (bug?)
+
 * How ASLR is Implemented - High-Level Details
 - Per-jail settings
 - Knobs:
@@ -100,6 +113,7 @@ Windows:
   security.pax.aslr.mmap_len: 16
   security.pax.aslr.stack_len: 12
   security.pax.aslr.exec_len: 21
+- If COMPAT_FREEBSD32 is defined
   security.pax.aslr.compat.status: 1
   security.pax.aslr.compat.mmap_len: 8
   security.pax.aslr.compat.stack_len: 6
@@ -135,9 +149,6 @@ Position-Independent Executables:
 * Future Work
 - Support PIE with high-visibility applications (network daemons, first)
 - Add support for ports
-- Support SPARC
-- Support ARM
-- Won't add support for x86 (i386) -- not enough bits can be randomized
 - Testing. Testing. And more testing!
 - Porting of more grsec/PaX features
 
