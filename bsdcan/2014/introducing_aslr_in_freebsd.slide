@@ -76,7 +76,8 @@ Non-policy technologies:
 
 * FreeBSD's Security Weaknesses
 
-- Only one exploit mitigation technology: non-exec stack
+- Only one exploit mitigation technology: non-exec (NX) stack
+- Gotcha: NX stack not working for all platforms
 - No PIE support in base
 - No ASLR
 - The many features of grsec
@@ -96,14 +97,16 @@ Windows:
 
 Available on all architectures
 
-ARMv6 (Raspberry Pi Model B) has issues
-
 Features:
 - Execution base randomzation for position-independent executables
 - Per-jail ASLR settings
 - Fine-grained control of individual applications via brandelf (was: paxctl)
-- Segmentation fault protection
 - NX stack on architectures where NX stack wasn't being obeyed (bug?)
+- Segmentation fault protection (via segvguard)
+
+Platforms with known issues:
+- ARMv6 (Raspberry Pi Model B) - kernel panic during boot
+- i386 - kernel panic during boot
 
 * How ASLR is Implemented - High-Level Details
 - Per-jail settings
@@ -146,11 +149,19 @@ Position-Independent Executables:
 - Even the host is a jail (JID 0, invisible to the user)
 - Compile applications with -fPIE -pie (note: how many ports entries do we have?)
 
+* Segfault Protection
+- PaX segvguard
+- Application dies due to segfault, insert delay before application can restart
+- Too many segfaults within a given period, application is blocked from restarting during a given period
+- Controllable via sysctl knobs
+- Recommended, but not required, for proper ASLR implementation
+
 * Future Work
+- Testing. Testing. And more testing!
 - Support PIE with high-visibility applications (network daemons, first)
 - Add support for ports
-- Testing. Testing. And more testing!
 - Porting of more grsec/PaX features
+- ARM help: Kernel panic happens before keyboard initialization. No input to ddb.
 
 * References
 
