@@ -103,10 +103,7 @@ Features:
 - Fine-grained control of individual applications via brandelf (was: paxctl)
 - NX stack on architectures where NX stack wasn't being obeyed (bug?)
 - Segmentation fault protection (via segvguard)
-
-Platforms with known issues:
-- ARMv6 (Raspberry Pi Model B) - kernel panic during boot
-- i386 - kernel panic during boot
+- OMG awesomeness: ugidfw(8)/mac_bsdextended(4) integration
 
 * How ASLR is Implemented - High-Level Details
 - Per-jail settings
@@ -124,12 +121,21 @@ Platforms with known issues:
 - What about applications that don't support ASLR? (exhibit crashes, proprietary/can't compile, etc.)
 - Knobs can be set per-jail. Set up a jail with ASLR turned off in just that jail. Jail the misbehaving application.
 
+* How ASLR is Implemented - High-Level Details
+
+ugidfw(8) integration:
+- Create firewall-like rules for controlling ASLR behavior
+- Very powerful
+- ugidfw set 10 subject uid shawn object paxpath /bin/sh paxflags a mode rx - Disable ASLR for user `shawn` for binary /bin/sh
+- My changes to ugidfw cause API breakage with one function in userland libugidfw and ABI breakage with one struct
+
 * How ASLR is Implemented - Low-Level Details
 
-`sys/kern/kern_pax.c` - Brains of the operation
-- Initializes the jail with defaults
-- Where the sysctl's are implemented
-- Where most of the logic for randomizing mmap calls and stack is done
+`sys/kern/kern_pax.c` - Generic functions
+
+`sys/kern/kern_pax_aslr.c` - Brains of ASLR
+
+`sys/kern/kern_pax_segvguard.c` - Brains of segvguard
 
 `sys/kern/imgact_elf.c` - RTLD randomizations
 - Normally, the RTLD is loaded at the same spot each time it's loaded, then it reloads itself in a random spot
@@ -161,7 +167,7 @@ Position-Independent Executables:
 - Support PIE with high-visibility applications (network daemons, first)
 - Add support for ports
 - Porting of more grsec/PaX features
-- ARM help: Kernel panic happens before keyboard initialization. No input to ddb.
+- ARM help: applications segfault when their child processes exit (_only_ on ARM)
 
 * References
 
