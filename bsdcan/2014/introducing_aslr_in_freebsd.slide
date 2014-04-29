@@ -169,6 +169,13 @@ Position-Independent Executables:
 - Porting of more grsec/PaX features
 - ARM help: applications segfault when their child processes exit (_only_ on ARM)
 
+* A Special Thank You
+
+Oliver Pinter - Codeveloper, original porter of ASLR to FreeBSD
+Ryan Steinmetz - Coworker with awesome ideas
+xmj - Convinced me to do stuff
+[[https://www.soldierx.com/][SoldierX]] - Donating hardware
+
 * References
 
 General ASLR:
