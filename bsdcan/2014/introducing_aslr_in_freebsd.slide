@@ -126,8 +126,13 @@ Features:
 ugidfw(8) integration:
 - Create firewall-like rules for controlling ASLR behavior
 - Very powerful
-- ugidfw set 10 subject uid shawn object paxpath /bin/sh paxflags a mode rx - Disable ASLR for user `shawn` for binary /bin/sh
 - My changes to ugidfw cause API breakage with one function in userland libugidfw and ABI breakage with one struct
+
+Current usage:
+- ugidfw set 10 subject uid shawn object type r mode rwxsl - Disable ASLR for user `shawn` for all regular files
+
+Planned usage:
+- ugidfw set 10 subject uid shawn object paxpath /bin/sh paxflags a mode rx - Disable ASLR for user `shawn` for binary `/bin/sh`
 
 * How ASLR is Implemented - Low-Level Details
 
