@@ -56,8 +56,7 @@ What ASLR doesn't help protect against:
 - 2008: OpenBSD completes ASLR implementation with PIE support.
 - 2011: ASLR introduced in Solaris 11
 - 2012: Apple finishes ASLR for OSX
-
-Thank you Wikipedia University!
+- 2014: Oliver Pinter and Shawn Webb submit ASLR patches to FreeBSD
 
 * FreeBSD's Security Strengths
 
@@ -100,10 +99,9 @@ Available on all architectures
 Features:
 - Execution base randomzation for position-independent executables
 - Per-jail ASLR settings
-- Fine-grained control of individual applications via brandelf (was: paxctl)
 - NX stack on architectures where NX stack wasn't being obeyed (bug?)
 - Segmentation fault protection (via segvguard)
-- OMG awesomeness: ugidfw(8)/mac_bsdextended(4) integration
+- OMG awesomeness: ugidfw(8)/mac_bsdextended(4) integration for fine-grained, high-level control
 
 * How ASLR is Implemented - High-Level Details
 - Per-jail settings
@@ -126,13 +124,10 @@ Features:
 ugidfw(8) integration:
 - Create firewall-like rules for controlling ASLR behavior
 - Very powerful
-- My changes to ugidfw cause API breakage with one function in userland libugidfw and ABI breakage with one struct
+- My changes to ugidfw cause ABI breakage
 
-Current usage:
-- ugidfw set 10 subject uid shawn object type r mode rwxsl - Disable ASLR for user `shawn` for all regular files
-
-Planned usage:
-- ugidfw set 10 subject uid shawn object paxpath /bin/sh paxflags a mode rx - Disable ASLR for user `shawn` for binary `/bin/sh`
+Example usage:
+ugidfw add subject uid shawn object filesys /usr/home/shawn/tmp/test mode rwxs paxflags a
 
 * How ASLR is Implemented - Low-Level Details
 
@@ -149,7 +144,7 @@ Planned usage:
 
 Position-Independent Executables:
 - Guaranteed to be loaded at a non-NULL address
-- WITH_PIE knob default to on, each application must also define CAN_PIE if said app can be compiled with -fPIE -pie (some apps can't be)
+- WITH_PIE knob (defaulted to off), each application must also define CAN_PIE if said app can be compiled with -fPIE -pie (some apps can't be)
 - Some apps in base have CAN_PIE defined. Need more. Major project: ports
 
 * How to use ASLR on FreeBSD
@@ -168,11 +163,11 @@ Position-Independent Executables:
 - Recommended, but not required, for proper ASLR implementation
 
 * Future Work
-- Testing. Testing. And more testing!
-- Support PIE with high-visibility applications (network daemons, first)
-- Add support for ports
-- Porting of more grsec/PaX features
 - ARM help: applications segfault when their child processes exit (_only_ on ARM)
+- Testing. Testing. And more testing!
+- Better support custom jailing
+- Support PIE with high-visibility applications (network daemons, first)
+- Porting of more grsec/PaX features
 
 * A Special Thank You
 
