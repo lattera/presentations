@@ -156,7 +156,7 @@ Position-Independent Executables:
 - Compile applications with -fPIE -pie (note: how many ports entries do we have?)
 
 * Segfault Protection
-- PaX segvguard
+- AKA PaX segvguard
 - Application dies due to segfault, insert delay before application can restart
 - Too many segfaults within a given period, application is blocked from restarting during a given period
 - Controllable via sysctl knobs
@@ -172,8 +172,9 @@ Position-Independent Executables:
 * A Special Thank You
 
 Oliver Pinter - Codeveloper, original porter of ASLR to FreeBSD
-Ryan Steinmetz - Coworker with awesome ideas
-xmj - Convinced me to do stuff
+Danilo Egea (danilo) - Codeveloper, principal developer of segvguard on FreeBSD
+Ryan Steinmetz (zi) - Coworker with awesome ideas
+Johannes Meixner (xmj) - Convinced me to do stuff
 [[https://www.soldierx.com/][SoldierX]] - Donating hardware
 
 * References
