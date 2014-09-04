@@ -19,7 +19,9 @@ http://hardenedbsd.org/
 
 Disclaimer: opinions, ideas, thoughts, etc are mine, not my employer's
 
-.image new_sx_logo_v2.png 150 150
+.html logos.html
+#.image 2014-08-21_logo_small_03.png
+#.image new_sx_logo_v2.png 150 150
 
 * Agenda
 - Definitions
