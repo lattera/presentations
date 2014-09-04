@@ -87,9 +87,13 @@ Non-policy technologies:
 Linux:
 - Hooray politics!
 - If you rip off PaX and grsec, make your rip off less secure, claim it to be more secure, you're gonna have a bad time.
-- Only one knob: turn ASLR on and off for the whole system (half-truth, you can turn ASLR off on a per-run basis: setarch $(uname -m) -R ./yourProgram)
 - Weak. Linux's ASLR has weaknesses.
+- Only one knob: turn ASLR on and off for the whole system (half-truth, you can turn ASLR off on a per-run basis: setarch $(uname -m) -R ./yourProgram)
+- non-root user can also do this: personality(orig_personality|ADDR_NO_RANDOMIZE);
 
+.image wat.png 275 275
+
+* Learning From Others
 Windows:
 - Overall a pretty decent technical implementation
 - BIIIIIG problem: individual EXEs and DLLs can have ASLR turned on or off
