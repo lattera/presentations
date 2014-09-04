@@ -79,7 +79,7 @@ Non-policy technologies:
 
 - Only one exploit mitigation technology: non-exec (NX) stack
 - Gotcha: NX stack not working for all platforms
-- PIE support in base shortly after BSDCan 2014
+- PIE support in base shortly after BSDCan 2014. No longer there. Need to rewrite.
 - No ASLR
 - The many features of grsec
 
