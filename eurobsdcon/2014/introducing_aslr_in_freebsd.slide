@@ -155,6 +155,16 @@ Position-Independent Executables:
 - Even the host is a jail (JID 0, invisible to the user)
 - Compile applications with -fPIE -pie (note: how many ports entries do we have?)
 
+* The HardenedBSD Project
+- http://hardenedbsd.org/
+- Launched in 2014 by Oliver Pinter and Shawn Webb
+- Staging area for security enhancements
+- Some enhancements won't be upstreamed
+- Slowly becoming a more complete downstream distribution
+- Five developers, three active daily
+
+.image 2014-08-21_logo_small_03.png
+
 * Future Work
 - ARM help: applications segfault when their child processes exit (_only_ on ARM)
 - Testing. Testing. And more testing!
